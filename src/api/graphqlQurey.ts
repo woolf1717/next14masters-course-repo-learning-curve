@@ -1,4 +1,4 @@
-import { type TypedDocumentString } from "@/gql/graphql";
+import {Type}  from "@graphql-codegen/import-types-preset";
 
 export const executeGraphql = async <TResult, TVariables>(
   query: TypedDocumentString<TResult, TVariables>,
