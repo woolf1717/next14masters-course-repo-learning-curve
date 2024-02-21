@@ -5,6 +5,9 @@ const require = createRequire(import.meta.url);
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
   experimental: { typedRoutes: true, mdxRs: true },
+  images: {
+    domains: ["static-ourstore.hyperfunctor.com"],
+  },
   redirects: async () => {
     return [
       {

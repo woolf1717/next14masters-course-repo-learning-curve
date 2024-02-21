@@ -4,6 +4,7 @@ import { formatMoney } from "@/utils";
 type ProductListItemDescriptionProps = {
   product: ProductListItemFragment;
 };
+
 export const ProductListItemDescription = ({
   product: { categories, name, price },
 }: ProductListItemDescriptionProps) => {
