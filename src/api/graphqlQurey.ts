@@ -1,8 +1,8 @@
-import {Type}  from "@graphql-codegen/import-types-preset";
+import { type TypedDocumentString } from "@/gql/graphql";
 
 export const executeGraphql = async <TResult, TVariables>(
   query: TypedDocumentString<TResult, TVariables>,
-  variables: TVariables
+  ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ): Promise<TResult> => {
   if (!process.env.GRAPHQL_URL) {
     throw TypeError("GRAPHQL_URL is not defined");
@@ -18,6 +18,10 @@ export const executeGraphql = async <TResult, TVariables>(
       "Content-Type": "application/json",
     },
   });
+
+  type GraphQLResponse<T> =
+    | { data?: undefined; errors: { message: string }[] }
+    | { data: T; errors?: undefined };
 
   const graphqlResponse = (await res.json()) as GraphQLResponse<TResult>;
 

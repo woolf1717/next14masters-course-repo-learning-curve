@@ -1,5 +1,6 @@
 import { type Metadata } from "next/types";
 import { Suspense } from "react";
+import { notFound } from "next/navigation";
 import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
 import { SuggestedProductsList } from "@/ui/organisms/SuggestedProducts";
 import { getProductById } from "@/api/products";
@@ -12,6 +13,9 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const product = await getProductById(params.productId);
 
+  if (!product) {
+    notFound();
+  }
   return {
     title: `${product.name} - Next.js Shop`,
     description: product.description,
@@ -25,10 +29,15 @@ export default async function SingleProductPage({
 }) {
   const product = await getProductById(params.productId);
 
+  if (!product) {
+    notFound();
+  }
   return (
     <>
       <article className="max-w-lg m-auto">
-        <ProductCoverImage {...product.coverImage} />
+        {product.images[0] && (
+          <ProductCoverImage src={product.images[0]?.url} alt={product.name} />
+        )}
         <SingleProductDescription product={product} />
       </article>
       <aside className="pt-4">

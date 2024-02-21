@@ -1,0 +1,16 @@
+query ProductsGetPagination($productsOnPage: Int!, $page: Int!) {
+  products(take: $productsOnPage, skip: $page) {
+    data {
+      id
+      name
+      description
+      categories {
+        name
+      }
+      images {
+        url
+      }
+      price
+    }
+  }
+}

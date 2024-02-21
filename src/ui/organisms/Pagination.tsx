@@ -4,16 +4,16 @@ import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
-export const Pagination = ({ page }: { page: string }) => {
+export const Pagination = ({ page }: { page: number }) => {
   const router = useRouter();
 
   const handlePrevious = () => {
-    if (page !== "1") router.push(`/products/${parseInt(page) - 1}`);
+    if (page !== 1) router.push(`/products/${page - 1}`);
     else alert("You are on the first page");
   };
   const handleNext = () => {
-    if (page !== "5") {
-      router.push(`/products/${parseInt(page) + 1}`);
+    if (page !== 5) {
+      router.push(`/products/${page + 1}`);
     } else alert("You are on the last page");
   };
 
@@ -22,7 +22,7 @@ export const Pagination = ({ page }: { page: string }) => {
       <button
         className={clsx(
           "px-4 py-2 bg-gray-200 rounded-md",
-          parseInt(page) === 1 && "bg-gray-700 cursor-auto"
+          page === 1 && "bg-gray-700 cursor-auto"
         )}
         onClick={handlePrevious}
       >
@@ -36,7 +36,7 @@ export const Pagination = ({ page }: { page: string }) => {
       <button
         className={clsx(
           "px-4 py-2 bg-gray-200 rounded-md",
-          parseInt(page) === 5 && "bg-gray-700 cursor-auto"
+          page === 5 && "bg-gray-700 cursor-auto"
         )}
         onClick={handleNext}
       >
