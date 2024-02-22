@@ -1,9 +1,9 @@
 import { Pagination } from "@/ui/organisms/Pagination";
 import { ProductList } from "@/ui/organisms/ProductList";
-import { getProductsListPagination } from "@/api/products";
+import { getProductsList } from "@/api/products";
 
 export default async function ProductsPage() {
-  const products = await getProductsListPagination(1);
+  const products = await getProductsList();
 
   return (
     <>
