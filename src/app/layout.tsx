@@ -1,10 +1,13 @@
 import "./globals.css";
 
-import { Inter } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
-import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { Header } from "@/ui/organisms/Header";
 
-const inter = Inter({ subsets: ["latin"] });
+const merriweather = Merriweather({
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+});
 
 export const metadata: Metadata = {
   title: "Nasza apka.",
@@ -18,17 +21,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <nav>
-          <ul className="flex justify-center mt-2 space-x-4">
-            <li>
-              <ActiveLink href="/">Home</ActiveLink>
-            </li>
-            <li>
-              <ActiveLink href="/products">All</ActiveLink>
-            </li>
-          </ul>
-        </nav>
+      <body className={merriweather.className}>
+        <Header />
         <section className="mx-auto max-w-md p-12 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
           {children}
         </section>
