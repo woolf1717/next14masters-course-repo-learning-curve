@@ -15,7 +15,7 @@ export const CollectionsBannerItem = ({
   const alt = bannersImages[parseInt(id) - 1]?.alt;
 
   return (
-    <NextLink href={`/collections/${slug}}`}>
+    <NextLink href={`/collections/${slug}`}>
       {src && alt && (
         <NextImage
           src={src}

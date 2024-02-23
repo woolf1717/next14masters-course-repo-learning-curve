@@ -34,11 +34,15 @@ export default async function SingleProductPage({
   }
   return (
     <>
-      <article className="max-w-lg m-auto">
+      <article className="flex w-full p-4 h-5/6 justify-around gap-4">
         {product.images[0] && (
-          <ProductCoverImage src={product.images[0]?.url} alt={product.name} />
+          <ProductCoverImage
+            src={product.images[0]?.url}
+            alt={product.name}
+            className={"basis-1/2"}
+          />
         )}
-        <SingleProductDescription product={product} />
+        <SingleProductDescription product={product} className={"basis-1/2"} />
       </article>
       <aside className="pt-4">
         <Suspense fallback={"Ładowanie..."}>
