@@ -272,6 +272,13 @@ export type SortDirection =
   | 'ASC'
   | 'DESC';
 
+export type CollectionsBannerFragment = { description: string, id: string, name: string, slug: string };
+
+export type CollectionsGetBannerQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CollectionsGetBannerQuery = { collections: { data: Array<{ description: string, id: string, name: string, slug: string }> } };
+
 export type ProductGetByIdQueryVariables = Exact<{
   id: Scalars['ID']['input'];
 }>;
@@ -315,6 +322,14 @@ export class TypedDocumentString<TResult, TVariables>
     return this.value;
   }
 }
+export const CollectionsBannerFragmentDoc = new TypedDocumentString(`
+    fragment CollectionsBanner on Collection {
+  description
+  id
+  name
+  slug
+}
+    `, {"fragmentName":"CollectionsBanner"}) as unknown as TypedDocumentString<CollectionsBannerFragment, unknown>;
 export const ProductListItemFragmentDoc = new TypedDocumentString(`
     fragment ProductListItem on Product {
   id
@@ -329,6 +344,18 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   price
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const CollectionsGetBannerDocument = new TypedDocumentString(`
+    query CollectionsGetBanner {
+  collections {
+    data {
+      description
+      id
+      name
+      slug
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<CollectionsGetBannerQuery, CollectionsGetBannerQueryVariables>;
 export const ProductGetByIdDocument = new TypedDocumentString(`
     query ProductGetById($id: ID!) {
   product(id: $id) {

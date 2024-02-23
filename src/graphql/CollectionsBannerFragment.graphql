@@ -1,0 +1,6 @@
+fragment CollectionsBanner on Collection {
+  description
+  id
+  name
+  slug
+}

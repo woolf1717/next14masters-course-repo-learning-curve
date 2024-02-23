@@ -1,0 +1,10 @@
+query CollectionsGetBanner {
+  collections {
+    data {
+      description
+      id
+      name
+      slug
+    }
+  }
+}
