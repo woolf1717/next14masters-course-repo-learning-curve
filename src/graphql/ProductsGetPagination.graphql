@@ -1,5 +1,5 @@
-query ProductsGetPagination($productsOnPage: Int!, $page: Int!) {
-  products(take: $productsOnPage, skip: $page) {
+query ProductsGetPagination($take: Int!, $skip: Int!) {
+  products(take: $take, skip: $skip) {
     data {
       id
       name

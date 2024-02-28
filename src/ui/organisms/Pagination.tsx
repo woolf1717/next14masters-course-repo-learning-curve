@@ -3,22 +3,44 @@
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { PRODUCTS_ON_PAGE } from "@/app/constans/constans";
 
-export const Pagination = ({ page }: { page: number }) => {
+export const Pagination = async ({
+  page,
+  productsTotal,
+}: {
+  page: number;
+  productsTotal: number;
+}) => {
   const router = useRouter();
+  const pagesCount = Math.ceil(productsTotal / PRODUCTS_ON_PAGE);
 
   const handlePrevious = () => {
     if (page !== 1) router.push(`/products/${page - 1}`);
     else alert("You are on the first page");
   };
   const handleNext = () => {
-    if (page !== 5) {
+    if (page !== pagesCount) {
       router.push(`/products/${page + 1}`);
     } else alert("You are on the last page");
   };
 
+  const activeLinks = () => {
+    const links = [];
+
+    for (let i = 1; i <= pagesCount; i++) {
+      links.push(
+        <ActiveLink href={`/products/${i}`} key={i}>
+          {i}
+        </ActiveLink>
+      );
+    }
+
+    return links;
+  };
+
   return (
-    <div className="flex justify-center space-x-2" aria-label="pagination">
+    <div className="pt-6 flex justify-center space-x-2" aria-label="pagination">
       <button
         className={clsx(
           "px-4 py-2 bg-gray-200 rounded-md",
@@ -28,15 +50,13 @@ export const Pagination = ({ page }: { page: number }) => {
       >
         Previous
       </button>
-      <ActiveLink href={"/products/1"}>1</ActiveLink>
-      <ActiveLink href={"/products/2"}>2</ActiveLink>
-      <ActiveLink href={"/products/3"}>3</ActiveLink>
-      <ActiveLink href={"/products/4"}>4</ActiveLink>
-      <ActiveLink href={"/products/5"}>5</ActiveLink>
+
+      {activeLinks()}
+
       <button
         className={clsx(
           "px-4 py-2 bg-gray-200 rounded-md",
-          page === 5 && "bg-gray-700 cursor-auto"
+          page >= pagesCount && "bg-gray-700 cursor-auto"
         )}
         onClick={handleNext}
       >

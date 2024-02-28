@@ -302,14 +302,19 @@ export type ProductsGetByCategorySlugQueryVariables = Exact<{
 
 export type ProductsGetByCategorySlugQuery = { category?: { products: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } | null };
 
+export type ProductsGetCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ProductsGetCountQuery = { products: { meta: { total: number } } };
+
 export type ProductsGetListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ProductsGetListQuery = { products: { data: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } };
 
 export type ProductsGetPaginationQueryVariables = Exact<{
-  productsOnPage: Scalars['Int']['input'];
-  page: Scalars['Int']['input'];
+  take: Scalars['Int']['input'];
+  skip: Scalars['Int']['input'];
 }>;
 
 
@@ -417,6 +422,15 @@ export const ProductsGetByCategorySlugDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ProductsGetByCategorySlugQuery, ProductsGetByCategorySlugQueryVariables>;
+export const ProductsGetCountDocument = new TypedDocumentString(`
+    query ProductsGetCount {
+  products {
+    meta {
+      total
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ProductsGetCountQuery, ProductsGetCountQueryVariables>;
 export const ProductsGetListDocument = new TypedDocumentString(`
     query ProductsGetList {
   products {
@@ -436,8 +450,8 @@ export const ProductsGetListDocument = new TypedDocumentString(`
 }
     `) as unknown as TypedDocumentString<ProductsGetListQuery, ProductsGetListQueryVariables>;
 export const ProductsGetPaginationDocument = new TypedDocumentString(`
-    query ProductsGetPagination($productsOnPage: Int!, $page: Int!) {
-  products(take: $productsOnPage, skip: $page) {
+    query ProductsGetPagination($take: Int!, $skip: Int!) {
+  products(take: $take, skip: $skip) {
     data {
       id
       name

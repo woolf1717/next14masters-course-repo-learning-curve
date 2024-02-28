@@ -4,9 +4,11 @@ import {
   ProductsGetListDocument,
   ProductGetByIdDocument,
   ProductsGetPaginationDocument,
+  ProductsGetCountDocument,
 } from "@/gql/graphql";
 
 import { executeGraphql } from "@/api/graphqlQurey";
+import { PRODUCTS_ON_PAGE } from "@/app/constans/constans";
 
 export const getProductsList = async () => {
   const graphqlResponse = await executeGraphql(ProductsGetListDocument);
@@ -36,12 +38,19 @@ export const getProductById = async (
 };
 
 export const getProductsListPagination = async (
-  pageNumber: number
+  pageNumber: number,
+  productsOnPage: number = PRODUCTS_ON_PAGE
 ): Promise<ProductListItemFragment[]> => {
   const graphqlResponse = await executeGraphql(ProductsGetPaginationDocument, {
-    productsOnPage: 2,
-    page: pageNumber,
+    skip: (pageNumber - 1) * productsOnPage,
+    take: productsOnPage,
   });
 
   return graphqlResponse.products.data;
+};
+
+export const getProductsTotal = async () => {
+  const graphqlResponse = await executeGraphql(ProductsGetCountDocument);
+
+  return graphqlResponse.products.meta.total;
 };
