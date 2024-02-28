@@ -5,6 +5,7 @@ import {
   ProductGetByIdDocument,
   ProductsGetPaginationDocument,
   ProductsGetCountDocument,
+  ProductsGetByQueryDocument,
 } from "@/gql/graphql";
 
 import { executeGraphql } from "@/api/graphqlQurey";
@@ -53,4 +54,12 @@ export const getProductsTotal = async () => {
   const graphqlResponse = await executeGraphql(ProductsGetCountDocument);
 
   return graphqlResponse.products.meta.total;
+};
+
+export const getProductsByQuery = async (query: string) => {
+  const graphqlResponse = await executeGraphql(ProductsGetByQueryDocument, {
+    query: query,
+  });
+
+  return graphqlResponse.products.data;
 };
