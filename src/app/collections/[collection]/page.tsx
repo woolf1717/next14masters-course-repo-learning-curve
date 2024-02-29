@@ -1,6 +1,23 @@
+import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProductList } from "@/ui/organisms/ProductList";
 import { getCollectionBySlug } from "@/api/collections";
+
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { collection: string };
+}): Promise<Metadata> => {
+  const collection = await getCollectionBySlug({ slug: params.collection });
+
+  if (!collection) {
+    notFound();
+  }
+  return {
+    title: `${collection.name} - Next.js Shop`,
+    description: collection.description,
+  };
+};
 
 export default async function CollectionPage({
   params,

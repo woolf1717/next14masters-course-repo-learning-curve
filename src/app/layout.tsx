@@ -1,8 +1,8 @@
 import "./globals.css";
 
+import { Header } from "@/ui/organisms/Header";
 import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
-import { Header } from "@/ui/organisms/Header";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pl">
       <body className={merriweather.className}>
         <Header />
         <div className="mx-auto max-w-md p-12 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">

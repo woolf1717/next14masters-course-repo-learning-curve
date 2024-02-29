@@ -8,20 +8,23 @@ import { PRODUCTS_ON_PAGE } from "@/app/constans/constans";
 export const Pagination = async ({
   page,
   productsTotal,
+  currentPath,
 }: {
   page: number;
   productsTotal: number;
+  currentPath: string;
 }) => {
   const router = useRouter();
   const pagesCount = Math.ceil(productsTotal / PRODUCTS_ON_PAGE);
 
   const handlePrevious = () => {
-    if (page !== 1) router.push(`/products/${page - 1}`);
+    if (page !== 1) router.push(`${currentPath}/${page - 1}`);
     else alert("You are on the first page");
   };
+
   const handleNext = () => {
     if (page !== pagesCount) {
-      router.push(`/products/${page + 1}`);
+      router.push(`${currentPath}/${page + 1}`);
     } else alert("You are on the last page");
   };
 
@@ -30,7 +33,7 @@ export const Pagination = async ({
 
     for (let i = 1; i <= pagesCount; i++) {
       links.push(
-        <ActiveLink href={`/products/${i}`} key={i}>
+        <ActiveLink href={`${currentPath}/${i}`} key={i}>
           {i}
         </ActiveLink>
       );

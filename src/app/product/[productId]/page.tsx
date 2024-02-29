@@ -46,7 +46,7 @@ export default async function SingleProductPage({
       </article>
       <aside className="pt-4">
         <Suspense fallback={"Ładowanie..."}>
-          <SuggestedProductsList />
+          <SuggestedProductsList dataTestId={"related-products"} />
         </Suspense>
       </aside>
     </>

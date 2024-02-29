@@ -58,7 +58,7 @@ export const getProductsTotal = async () => {
 
 export const getProductsByQuery = async (query: string) => {
   const graphqlResponse = await executeGraphql(ProductsGetByQueryDocument, {
-    query: query,
+    query: decodeURIComponent(query),
   });
 
   return graphqlResponse.products.data;

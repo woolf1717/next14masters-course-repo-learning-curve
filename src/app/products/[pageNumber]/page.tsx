@@ -15,7 +15,11 @@ export default async function ProductsPage({
   return (
     <div className="px-4 flex h-4/6 flex-col justify-evenly pt-2">
       <ProductList products={products} />
-      <Pagination page={page} productsTotal={productsTotal} />
+      <Pagination
+        page={page}
+        productsTotal={productsTotal}
+        currentPath="/products"
+      />
     </div>
   );
 }

@@ -18,7 +18,7 @@ export const SearchBox = () => {
       const params = new URLSearchParams(searchParams.toString());
       params.set(name, value);
 
-      return params.toString();
+      return params.toString().replaceAll("+", "%20");
     },
     [searchParams]
   );

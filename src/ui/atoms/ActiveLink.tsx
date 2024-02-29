@@ -30,11 +30,11 @@ export const ActiveLink = <Href extends string>({
 
   return (
     <Link
-      href={{ pathname: href }}
+      href={href}
       className={clsx(
         "text-blue-400 hover:text-blue-600",
         {
-          underline: isActive,
+          " border-b-2 border-b-blue-400": isActive,
         },
         className,
         activeClassName && isActive
