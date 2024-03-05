@@ -12,18 +12,20 @@ import { executeGraphql } from "@/api/graphqlQurey";
 import { PRODUCTS_ON_PAGE } from "@/app/constans/constans";
 
 export const getProductsList = async () => {
-  const graphqlResponse = await executeGraphql(ProductsGetListDocument);
+  const graphqlResponse = await executeGraphql({
+    query: ProductsGetListDocument,
+  });
 
   return graphqlResponse.products.data;
 };
 
 export const getProductsByCategorySlug = async (categorySlug: string) => {
-  const graphqlResponse = await executeGraphql(
-    ProductsGetByCategorySlugDocument,
-    {
+  const graphqlResponse = await executeGraphql({
+    query: ProductsGetByCategorySlugDocument,
+    variables: {
       slug: categorySlug,
-    }
-  );
+    },
+  });
 
   return graphqlResponse.category?.products;
 };
@@ -31,8 +33,11 @@ export const getProductsByCategorySlug = async (categorySlug: string) => {
 export const getProductById = async (
   productId: ProductListItemFragment["id"]
 ) => {
-  const graphqlResponse = await executeGraphql(ProductGetByIdDocument, {
-    id: productId,
+  const graphqlResponse = await executeGraphql({
+    query: ProductGetByIdDocument,
+    variables: {
+      id: productId,
+    },
   });
 
   return graphqlResponse.product;
@@ -42,23 +47,31 @@ export const getProductsListPagination = async (
   pageNumber: number,
   productsOnPage: number = PRODUCTS_ON_PAGE
 ): Promise<ProductListItemFragment[]> => {
-  const graphqlResponse = await executeGraphql(ProductsGetPaginationDocument, {
-    skip: (pageNumber - 1) * productsOnPage,
-    take: productsOnPage,
+  const graphqlResponse = await executeGraphql({
+    query: ProductsGetPaginationDocument,
+    variables: {
+      skip: (pageNumber - 1) * productsOnPage,
+      take: productsOnPage,
+    },
   });
 
   return graphqlResponse.products.data;
 };
 
 export const getProductsTotal = async () => {
-  const graphqlResponse = await executeGraphql(ProductsGetCountDocument);
+  const graphqlResponse = await executeGraphql({
+    query: ProductsGetCountDocument,
+  });
 
   return graphqlResponse.products.meta.total;
 };
 
-export const getProductsByQuery = async (query: string) => {
-  const graphqlResponse = await executeGraphql(ProductsGetByQueryDocument, {
-    query: decodeURIComponent(query),
+export const getProductsByQuery = async (searchQuery: string) => {
+  const graphqlResponse = await executeGraphql({
+    query: ProductsGetByQueryDocument,
+    variables: {
+      query: decodeURIComponent(searchQuery),
+    },
   });
 
   return graphqlResponse.products.data;

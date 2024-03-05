@@ -1,8 +1,8 @@
 import "./globals.css";
 
-import { Header } from "@/ui/organisms/Header";
 import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
+import { Header } from "@/ui/organisms/Header";
 
 const merriweather = Merriweather({
   subsets: ["latin"],

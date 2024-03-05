@@ -6,14 +6,19 @@ import {
 import { executeGraphql } from "@/api/graphqlQurey";
 
 export const getCollectionsList = async () => {
-  const graphqlResponse = await executeGraphql(CollectionsGetBannerDocument);
+  const graphqlResponse = await executeGraphql({
+    query: CollectionsGetBannerDocument,
+  });
 
   return graphqlResponse.collections.data;
 };
 
 export const getCollectionBySlug = async ({ slug }: { slug: string }) => {
-  const graphqlResponse = await executeGraphql(CollectionGetBySlugDocument, {
-    slug,
+  const graphqlResponse = await executeGraphql({
+    query: CollectionGetBySlugDocument,
+    variables: {
+      slug,
+    },
   });
 
   return graphqlResponse.collection;
