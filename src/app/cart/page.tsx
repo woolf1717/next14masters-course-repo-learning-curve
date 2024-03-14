@@ -1,8 +1,9 @@
 import { redirect } from "next/navigation";
+import { getCartFromCookies, handlePaymentAction } from "@/api/cart";
+
 import { ChangeProductQuantity } from "@/ui/atoms/IncrementProductQuantity";
 import { RemoveButton } from "@/ui/atoms/RemoveButton";
 import { formatMoney } from "@/utils";
-import { getCartFromCookies } from "@/api/cart";
 
 export default async function CartPage() {
   const cart = await getCartFromCookies();
@@ -48,6 +49,14 @@ export default async function CartPage() {
             ))}
         </tbody>
       </table>
+      <form action={handlePaymentAction}>
+        <button
+          type="submit"
+          className="border max-w-xs rounded-md  py-2 hover:bg-slate-800 shadow-sm mt-4 w-full bg-slate-950 text-white"
+        >
+          Pay
+        </button>
+      </form>
     </div>
   );
 }

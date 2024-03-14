@@ -15,6 +15,7 @@ export const executeGraphql = async <TResult, TVariables>({
   ? { variables?: never }
   : { variables: TVariables })): Promise<TResult> => {
   if (!process.env.GRAPHQL_URL) {
+    console.log(process.env.GRAPHQL_URL);
     throw TypeError("GRAPHQL_URL is not defined");
   }
 
