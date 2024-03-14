@@ -1,0 +1,11 @@
+fragment Reviews on Product {
+  reviews {
+    author
+    createdAt
+    description
+    email
+    rating
+    title
+    id
+  }
+}

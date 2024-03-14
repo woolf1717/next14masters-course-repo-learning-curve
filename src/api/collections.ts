@@ -3,7 +3,7 @@ import {
   CollectionsGetBannerDocument,
 } from "@/gql/graphql";
 
-import { executeGraphql } from "@/api/graphqlQurey";
+import { executeGraphql } from "@/api/graphqlQuery";
 
 export const getCollectionsList = async () => {
   const graphqlResponse = await executeGraphql({

@@ -2,6 +2,7 @@ import "./globals.css";
 
 import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Header } from "@/ui/organisms/Header";
 
 const merriweather = Merriweather({
@@ -22,13 +23,15 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={merriweather.className}>
-        <Header />
-        <div className="mx-auto max-w-md p-12 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
-          {children}
-        </div>
-        <footer>
-          <p className=" text-center text-sm text-gray-500">© 2024</p>
-        </footer>
+        <Suspense>
+          <Header />
+          <div className="mx-auto max-w-md p-12 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
+            {children}
+          </div>
+          <footer>
+            <p className=" text-center text-sm text-gray-500">© 2024</p>
+          </footer>
+        </Suspense>
       </body>
     </html>
   );

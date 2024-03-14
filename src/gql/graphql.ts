@@ -93,6 +93,7 @@ export type MutationCartChangeItemQuantityArgs = {
 
 export type MutationCartCompleteArgs = {
   cartId: Scalars['ID']['input'];
+  userEmail: Scalars['String']['input'];
 };
 
 
@@ -368,6 +369,27 @@ export type ProductsGetPaginationQueryVariables = Exact<{
 
 export type ProductsGetPaginationQuery = { products: { data: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } };
 
+export type ReviewCreateMutationVariables = Exact<{
+  name: Scalars['String']['input'];
+  content: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  productId: Scalars['ID']['input'];
+  headline: Scalars['String']['input'];
+  rating: Scalars['Int']['input'];
+}>;
+
+
+export type ReviewCreateMutation = { reviewCreate: { id: string } };
+
+export type ReviewsFragment = { reviews: Array<{ author: string, createdAt: unknown, description: string, email: string, rating: number, title: string, id: string }> };
+
+export type ReviewsGetByIdQueryVariables = Exact<{
+  id: Scalars['ID']['input'];
+}>;
+
+
+export type ReviewsGetByIdQuery = { product?: { reviews: Array<{ author: string, createdAt: unknown, description: string, email: string, rating: number, title: string, id: string }> } | null };
+
 export class TypedDocumentString<TResult, TVariables>
   extends String
   implements DocumentTypeDecoration<TResult, TVariables>
@@ -420,6 +442,19 @@ export const ProductListItemFragmentDoc = new TypedDocumentString(`
   price
 }
     `, {"fragmentName":"ProductListItem"}) as unknown as TypedDocumentString<ProductListItemFragment, unknown>;
+export const ReviewsFragmentDoc = new TypedDocumentString(`
+    fragment Reviews on Product {
+  reviews {
+    author
+    createdAt
+    description
+    email
+    rating
+    title
+    id
+  }
+}
+    `, {"fragmentName":"Reviews"}) as unknown as TypedDocumentString<ReviewsFragment, unknown>;
 export const CartAddProductDocument = new TypedDocumentString(`
     mutation CartAddProduct($id: ID!, $productId: String!, $quantity: Int!) {
   cartAddItem(
@@ -617,3 +652,32 @@ export const ProductsGetPaginationDocument = new TypedDocumentString(`
   }
 }
     `) as unknown as TypedDocumentString<ProductsGetPaginationQuery, ProductsGetPaginationQueryVariables>;
+export const ReviewCreateDocument = new TypedDocumentString(`
+    mutation ReviewCreate($name: String!, $content: String!, $email: String!, $productId: ID!, $headline: String!, $rating: Int!) {
+  reviewCreate(
+    author: $name
+    description: $content
+    email: $email
+    productId: $productId
+    title: $headline
+    rating: $rating
+  ) {
+    id
+  }
+}
+    `) as unknown as TypedDocumentString<ReviewCreateMutation, ReviewCreateMutationVariables>;
+export const ReviewsGetByIdDocument = new TypedDocumentString(`
+    query ReviewsGetById($id: ID!) {
+  product(id: $id) {
+    reviews {
+      author
+      createdAt
+      description
+      email
+      rating
+      title
+      id
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<ReviewsGetByIdQuery, ReviewsGetByIdQueryVariables>;

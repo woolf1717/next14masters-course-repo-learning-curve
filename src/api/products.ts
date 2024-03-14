@@ -8,7 +8,7 @@ import {
   ProductsGetByQueryDocument,
 } from "@/gql/graphql";
 
-import { executeGraphql } from "@/api/graphqlQurey";
+import { executeGraphql } from "@/api/graphqlQuery";
 import { PRODUCTS_ON_PAGE } from "@/app/constans/constans";
 
 export const getProductsList = async () => {

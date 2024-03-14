@@ -1,12 +1,14 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import {
   CartRemoveProductDocument,
   CartSetProductQuantityDocument,
+  ReviewCreateDocument,
 } from "@/gql/graphql";
 
-import { executeGraphql } from "@/api/graphqlQurey";
+import { executeGraphql } from "@/api/graphqlQuery";
+import { type RowFormDataType } from "@/ui/molecules/AddReviewsForm";
 
 export const removeItem = (cartId: string, productId: string) => {
   return executeGraphql({
@@ -31,4 +33,14 @@ export const changeItemQuantity = async (
 
   revalidatePath("/cart");
   return changeItemQuantity;
+};
+
+export const sendReview = async (rowFormData: RowFormDataType) => {
+  const addReview = await executeGraphql({
+    query: ReviewCreateDocument,
+    variables: rowFormData,
+  });
+
+  revalidateTag("product");
+  return addReview;
 };

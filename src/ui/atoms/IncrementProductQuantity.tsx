@@ -1,7 +1,7 @@
 "use client";
 
-import { useOptimistic } from "react";
 import { changeItemQuantity } from "@/serverActions";
+import { useOptimistic } from "react";
 
 export const ChangeProductQuantity = ({
   cartId,
@@ -47,7 +47,6 @@ export const ChangeProductQuantity = ({
       >
         +
       </button>
-      ;
     </form>
   );
 };

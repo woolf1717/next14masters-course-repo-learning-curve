@@ -1,9 +1,9 @@
 "use client";
 
-import { ActiveLink } from "@/ui/atoms/ActiveLink";
-import { PRODUCTS_ON_PAGE } from "@/app/constans/constans";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
+import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { PRODUCTS_ON_PAGE } from "@/app/constans/constans";
 
 export const Pagination = async ({
   page,
