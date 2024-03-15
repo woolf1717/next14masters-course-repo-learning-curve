@@ -9,6 +9,7 @@ import {
 
 import { executeGraphql } from "@/api/graphqlQuery";
 import { type RowFormDataType } from "@/ui/molecules/AddReviewsForm";
+import { addProductToCart } from "@/api/cart";
 
 export const removeItem = (cartId: string, productId: string) => {
   return executeGraphql({
@@ -43,4 +44,10 @@ export const sendReview = async (rowFormData: RowFormDataType) => {
 
   revalidateTag("product");
   return addReview;
+};
+
+export const addToCartAction = async (productId: string) => {
+  await addProductToCart(productId);
+
+  revalidateTag("cart");
 };

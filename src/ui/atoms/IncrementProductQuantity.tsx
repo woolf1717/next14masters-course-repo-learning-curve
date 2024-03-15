@@ -1,7 +1,7 @@
 "use client";
-
-import { changeItemQuantity } from "@/serverActions";
 import { useOptimistic } from "react";
+import { changeItemQuantity } from "@/serverActions";
+
 
 export const ChangeProductQuantity = ({
   cartId,
@@ -37,7 +37,7 @@ export const ChangeProductQuantity = ({
       >
         -
       </button>
-      {optimisticQuantity}
+      <span data-testid="quantity">{optimisticQuantity}</span>
       <button
         className="border bg-slate-50 w-8 h-8 ml-2"
         formAction={async () => {

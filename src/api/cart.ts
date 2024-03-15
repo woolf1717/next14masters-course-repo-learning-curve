@@ -1,15 +1,15 @@
-
-import Stripe from "stripe";
-import { cookies } from "next/headers";
-
-import { redirect } from "next/navigation";
-import { executeGraphql } from "@/api/graphqlQuery";
 import {
   CartAddProductDocument,
   CartCreateDocument,
   CartGetByIdDocument,
+  CartSetProductQuantityDocument,
   ProductGetByIdDocument,
 } from "@/gql/graphql";
+
+import Stripe from "stripe";
+import { cookies } from "next/headers";
+import { executeGraphql } from "@/api/graphqlQuery";
+import { redirect } from "next/navigation";
 
 export async function getOrCreateCart() {
   const existingCart = await getCartFromCookies();
@@ -27,7 +27,7 @@ export async function getOrCreateCart() {
   return newCart;
 }
 
-export async function addProductToCart(cartId: string, productId: string) {
+export async function addProductToCart(productId: string) {
   const { product } = await executeGraphql({
     query: ProductGetByIdDocument,
     variables: {
@@ -39,16 +39,32 @@ export async function addProductToCart(cartId: string, productId: string) {
     throw new Error("Product not found");
   }
 
-  const graphqlResponse = await executeGraphql({
-    query: CartAddProductDocument,
-    variables: {
-      id: cartId,
-      productId: productId,
-      quantity: 1,
-    },
-  });
+  const cart = await getOrCreateCart();
+  const cartId = cart.id;
 
-  return graphqlResponse;
+  const item = cart.items.find((item) => item.product.id === productId);
+
+  if (item === undefined) {
+    const graphqlResponse = await executeGraphql({
+      query: CartAddProductDocument,
+      variables: {
+        id: cartId,
+        productId: productId,
+        quantity: 1,
+      },
+    });
+    return graphqlResponse;
+  } else {
+    const changeItemQuantity = await executeGraphql({
+      query: CartSetProductQuantityDocument,
+      variables: {
+        id: cartId,
+        productId,
+        quantity: item.quantity + 1,
+      },
+    });
+    return changeItemQuantity;
+  }
 }
 
 export async function getCartFromCookies() {

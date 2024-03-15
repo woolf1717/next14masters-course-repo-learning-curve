@@ -1,8 +1,7 @@
-import { revalidateTag } from "next/cache";
 import { type ProductListItemFragment } from "@/gql/graphql";
 import { formatMoney } from "@/utils";
-import { addProductToCart, getOrCreateCart } from "@/api/cart";
 import { AddToCartButton } from "@/ui/atoms/AddToCartButton";
+import { addToCartAction } from "@/serverActions";
 
 type SingleProductDescription = {
   product: ProductListItemFragment;
@@ -12,18 +11,7 @@ export const SingleProductDescription = ({
   product: { name, price, description, id },
   className,
 }: SingleProductDescription) => {
-  const procuctId = id;
-
-  async function addToCartAction() {
-    "use server";
-
-    const cart = await getOrCreateCart();
-    const cartId = cart.id;
-
-    await addProductToCart(cartId, procuctId);
-
-    revalidateTag("cart");
-  }
+  const productId = id;
 
   return (
     <>
@@ -37,8 +25,13 @@ export const SingleProductDescription = ({
         <p className="text-sm text-grey-500">
           <span className="sr-only">Kategoria:</span>
         </p>
-        <form action={addToCartAction}>
-          <input type="hidden" name="productId" value={procuctId} />
+        <form
+          action={async () => {
+            "use server";
+            await addToCartAction(productId);
+          }}
+        >
+          <input type="hidden" name="productId" value={productId} />
           <AddToCartButton />
         </form>
       </div>
