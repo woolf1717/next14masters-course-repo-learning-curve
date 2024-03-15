@@ -13,13 +13,15 @@ export default async function ProductsPage({
   const products = await getProductsListPagination(page);
 
   return (
-    <div className="px-4 flex h-4/6 flex-col justify-evenly pt-2">
+    <>
       <ProductList products={products} />
-      <Pagination
-        page={page}
-        productsTotal={productsTotal}
-        currentPath="/products"
-      />
-    </div>
+      <div className="px-4 flex h-4/6 flex-col justify-evenly pt-2">
+        <Pagination
+          page={page}
+          productsTotal={productsTotal}
+          currentPath="/products"
+        />
+      </div>
+    </>
   );
 }

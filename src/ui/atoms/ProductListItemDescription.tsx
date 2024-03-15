@@ -1,12 +1,12 @@
 import { type ProductListItemFragment } from "@/gql/graphql";
-import { formatMoney } from "@/utils";
+import { formatMoney, formatRating } from "@/utils";
 
 type ProductListItemDescriptionProps = {
   product: ProductListItemFragment;
 };
 
 export const ProductListItemDescription = ({
-  product: { categories, name, price },
+  product: { categories, name, price, rating },
 }: ProductListItemDescriptionProps) => {
   return (
     <div className="mt-2 flex justify-between">
@@ -19,10 +19,17 @@ export const ProductListItemDescription = ({
           </p>
         )}
       </div>
-      <p className="text-sm font-medium text-grey-900">
-        <span className="sr-only">Cena:</span>
-        {formatMoney(price / 100)}
-      </p>
+      <div>
+        <p className="text-sm font-medium text-grey-900">
+          <span className="sr-only">Cena:</span>
+          <span data-testid="product-price">{formatMoney(price / 100)}</span>
+        </p>
+        <div>
+          <span>Rating:</span>
+
+          <span data-testid="product-rating">{formatRating(rating)}</span>
+        </div>
+      </div>
     </div>
   );
 };

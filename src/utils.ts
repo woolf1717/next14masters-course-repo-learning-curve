@@ -4,3 +4,11 @@ export const formatMoney = (amount: number) => {
     currency: "USD",
   }).format(amount);
 };
+
+export const formatRating = (rating: number | null | undefined) => {
+  if (rating === null || rating === undefined) {
+    return "Brak oceny";
+  } else {
+    return rating.toFixed();
+  }
+};
