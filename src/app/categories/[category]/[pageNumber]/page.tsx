@@ -19,7 +19,7 @@ export const generateStaticParams = async ({
 export const generateMetadata = async ({
   params,
 }: {
-  params: { category: string; pageNumber: string };
+  params: { category: string };
 }): Promise<Metadata> => {
   return {
     title: firstLetterToUppercase(params.category),
@@ -32,6 +32,7 @@ export default async function CatergoryProductsPage({
   params: { category: string; pageNumber: string };
 }) {
   const products = await getProductsByCategorySlug(params.category);
+
   if (!products) {
     notFound();
   }

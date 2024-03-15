@@ -6,6 +6,8 @@ import {
   ProductsGetPaginationDocument,
   ProductsGetCountDocument,
   ProductsGetByQueryDocument,
+  type ProductSortBy,
+  type SortDirection,
 } from "@/gql/graphql";
 
 import { executeGraphql } from "@/api/graphqlQuery";
@@ -45,6 +47,8 @@ export const getProductById = async (
 
 export const getProductsListPagination = async (
   pageNumber: number,
+  orderBy?: ProductSortBy,
+  order?: SortDirection,
   productsOnPage: number = PRODUCTS_ON_PAGE
 ): Promise<ProductListItemFragment[]> => {
   const graphqlResponse = await executeGraphql({
@@ -52,6 +56,8 @@ export const getProductsListPagination = async (
     variables: {
       skip: (pageNumber - 1) * productsOnPage,
       take: productsOnPage,
+      orderBy,
+      order,
     },
   });
 

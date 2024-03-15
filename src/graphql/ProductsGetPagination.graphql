@@ -1,5 +1,10 @@
-query ProductsGetPagination($take: Int!, $skip: Int!) {
-  products(take: $take, skip: $skip) {
+query ProductsGetPagination(
+  $take: Int!
+  $skip: Int!
+  $orderBy: ProductSortBy = PRICE
+  $order: SortDirection = ASC
+) {
+  products(take: $take, skip: $skip, orderBy: $orderBy, order: $order) {
     data {
       ...ProductListItem
     }
