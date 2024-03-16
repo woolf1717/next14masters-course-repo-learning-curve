@@ -1,15 +1,15 @@
+import { redirect } from "next/navigation";
+import Stripe from "stripe";
+import { cookies } from "next/headers";
+import { executeGraphql } from "@/api/graphqlQuery";
+
 import {
   CartAddProductDocument,
   CartCreateDocument,
   CartGetByIdDocument,
   CartSetProductQuantityDocument,
   ProductGetByIdDocument,
-} from "@/gql/graphql";
-
-import Stripe from "stripe";
-import { cookies } from "next/headers";
-import { executeGraphql } from "@/api/graphqlQuery";
-import { redirect } from "next/navigation";
+} from "@/gql/graphql";``
 
 export async function getOrCreateCart() {
   const existingCart = await getCartFromCookies();

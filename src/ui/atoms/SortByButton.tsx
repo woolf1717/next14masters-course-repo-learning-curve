@@ -5,7 +5,13 @@ import { useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { type ProductSortBy } from "@/gql/graphql";
 
-export const SortByButton = ({ sortBy }: { sortBy: ProductSortBy }) => {
+export const SortByButton = ({
+  sortBy,
+  visible,
+}: {
+  sortBy: ProductSortBy;
+  visible: boolean;
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -20,7 +26,7 @@ export const SortByButton = ({ sortBy }: { sortBy: ProductSortBy }) => {
           params.set("order", "DESC");
         }
       } else {
-        params.set("order", "DESC");
+        params.set("order", "ASC");
       }
       params.set(name, value);
       return params.toString().replaceAll("+", "%20");
@@ -36,10 +42,11 @@ export const SortByButton = ({ sortBy }: { sortBy: ProductSortBy }) => {
 
   return (
     <button
-      data-testid={`sort-by-${sortBy}`}
+      data-testid={`sort-by-${sortBy.toLowerCase()}`}
       className={clsx(
         "px-4 py-2 m-2 bg-slate-400 rounded-xl",
-        active && "bg-yellow-300"
+        active && "bg-yellow-300",
+        !visible && "hidden"
       )}
       onClick={handleClick}
     >

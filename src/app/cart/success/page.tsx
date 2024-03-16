@@ -6,9 +6,9 @@ export default async function CartSuccessPage({
 }: {
   searchParams: { sessionId?: string };
 }) {
-  //   if (!searchParams.sessionId) {
-  //     redirect("/");
-  //   }
+  if (!searchParams.sessionId) {
+    redirect("/");
+  }
   if (!process.env.STRIPE_SECRET_KEY) {
     throw new Error("Missing STRIPE_SECRET_KEY");
   }

@@ -51,6 +51,9 @@ export const getProductsListPagination = async (
   order?: SortDirection,
   productsOnPage: number = PRODUCTS_ON_PAGE
 ): Promise<ProductListItemFragment[]> => {
+  console.log("pageNumber", pageNumber);
+  console.log("orderBy", orderBy);
+  console.log("order", order);
   const graphqlResponse = await executeGraphql({
     query: ProductsGetPaginationDocument,
     variables: {

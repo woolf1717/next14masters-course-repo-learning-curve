@@ -5,17 +5,17 @@ import { ProductList } from "@/ui/organisms/ProductList";
 import { getProductsByCategorySlug } from "@/api/products";
 import { firstLetterToUppercase } from "@/ultis/firstLetterToUppercase";
 
-export const generateStaticParams = async ({
-  params,
-}: {
-  params: { category: string };
-}) => {
-  if (params.category === "t-shirts") {
-    return [{ pageNumber: "1" }, { pageNumber: "2" }];
-  } else {
-    return [{ pageNumber: "1" }];
-  }
-};
+// export const generateStaticParams = async ({
+//   params,
+// }: {
+//   params: { category: string };
+// }) => {
+//   if (params.category === "t-shirts") {
+//     return [{ pageNumber: "1" }, { pageNumber: "2" }];
+//   } else {
+//     return [{ pageNumber: "1" }];
+//   }
+// };
 export const generateMetadata = async ({
   params,
 }: {
