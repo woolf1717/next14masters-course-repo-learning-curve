@@ -1,9 +1,10 @@
 import "./globals.css";
 
+import { ClerkProvider } from "@clerk/nextjs";
 import { Merriweather } from "next/font/google";
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { Header } from "@/ui/organisms/Header";
+import { NavBar } from "@/ui/organisms/Header";
 
 const merriweather = Merriweather({
   subsets: ["latin"],
@@ -21,19 +22,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl">
-      <body className={merriweather.className}>
-        <Suspense>
-          <Header />
-          <div className="mx-auto max-w-md p-12 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
-            {children}
-          </div>
-          <footer>
-            <p className=" text-center text-sm text-gray-500">© 2024</p>
-          </footer>
-        </Suspense>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="pl">
+        <body className={merriweather.className}>
+          <Suspense>
+            <NavBar />
+            <div className="mx-auto max-w-md p-12 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
+              {children}
+            </div>
+            <footer>
+              <p className=" text-center text-sm text-gray-500">© 2024</p>
+            </footer>
+          </Suspense>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
 ``;
