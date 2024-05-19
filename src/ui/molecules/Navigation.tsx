@@ -3,7 +3,7 @@ import { ActiveLink } from "@/ui/atoms/ActiveLink";
 export const Navigation = () => {
   return (
     <nav>
-      <ul className="flex h-16 max-w-full space-x-8 whitespace-nowrap lg:px-8">
+      <ul className="flex max-w-full space-x-8 whitespace-nowrap lg:px-8 h-16 sm:overflow-auto overflow-x-scroll">
         <li>
           <ActiveLink href="/">Home</ActiveLink>
         </li>

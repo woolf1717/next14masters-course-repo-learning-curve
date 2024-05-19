@@ -48,9 +48,9 @@ export const SearchBox = () => {
   ]);
 
   return (
-    <div className="w-full max-w-lg lg:max-w-xs">
+    <div className="w-full max-w-xs">
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4 opacity-20">
           <SearchIcon />
         </div>
         <input
@@ -58,7 +58,7 @@ export const SearchBox = () => {
           placeholder="Search"
           value={searchInput}
           onChange={handleChange}
-          className="w-full rounded-md border-0 bg-slate-50 py-2 pl-11 pr-4 text-sm text-slate-800 ring-1 ring-inset ring-gray-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-blue-400  focus-visible:outline-none"
+          className="w-full rounded-md border-0 bg-slate-50 py-2 pl-12 pr-4 text-sm text-slate-800 ring-1 ring-inset ring-zinc-300 placeholder:text-slate-400 focus:ring-2 focus:ring-inset focus:ring-blue-400  focus-visible:outline-none"
         />
       </div>
     </div>

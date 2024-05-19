@@ -1,14 +1,14 @@
 import "./globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import { Merriweather } from "next/font/google";
+import { Merriweather_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { NavBar } from "@/ui/organisms/Header";
 
-const merriweather = Merriweather({
+const merriweather = Merriweather_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
+  weight: ["300", "400", "700"],
 });
 
 export const metadata: Metadata = {
