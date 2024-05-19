@@ -10,14 +10,11 @@ import { useRouter } from "next/navigation";
 
 export const SortListBy = async () => {
   const router = useRouter();
-  // const [visible, setVisible] = useState(false);
-  // const products = await getProductsListPagination(1, "DEFAULT", "ASC");
   return (
     <>
-      {/* <p>{JSON.stringify(products)}</p> */}
-      <div className={clsx("flex justify-end m-4 p-2")}>
+      <div className="m-4 p-2 pt-0 mt-0">
         <select
-          className="p-2"
+          className="p-2 border text-xs border-gray-300 rounded-md"
           onChange={(e) => {
             const [sortBy, order] = e.currentTarget.value.split(" ");
 
@@ -35,16 +32,6 @@ export const SortListBy = async () => {
           </option>
           <option value="PRICE ASC">Price (High to Low)</option>
         </select>
-
-        {/* <button
-          className="px-4 py-2 m-2 bg-slate-400 rounded-xl"
-          onClick={() => setVisible(!visible)}
-        >
-          Sort by
-        </button>
-
-        <SortByButton sortBy="PRICE" visible={visible} />
-        <SortByButton sortBy="RATING" visible={visible} /> */}
       </div>
     </>
   );

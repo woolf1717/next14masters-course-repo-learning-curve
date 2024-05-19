@@ -46,8 +46,8 @@ export const Pagination = async ({
     <div className="pt-6 flex justify-center space-x-2" aria-label="pagination">
       <button
         className={clsx(
-          "px-4 py-2 bg-gray-200 rounded-md",
-          page === 1 && "bg-gray-700 cursor-auto"
+          "mx-1 px-4 py-2 bg-gray-200 rounded-md",
+          page === 1 && "bg-gray-200 opacity-90 text-gray-300 cursor-auto"
         )}
         onClick={handlePrevious}
       >
@@ -58,8 +58,9 @@ export const Pagination = async ({
 
       <button
         className={clsx(
-          "px-4 py-2 bg-gray-200 rounded-md",
-          page >= pagesCount && "bg-gray-700 cursor-auto"
+          "mx-1 px-4 py-2 bg-gray-200 rounded-md",
+          page >= pagesCount &&
+            "bg-gray-200  opacity-90 text-gray-300 cursor-auto"
         )}
         onClick={handleNext}
       >

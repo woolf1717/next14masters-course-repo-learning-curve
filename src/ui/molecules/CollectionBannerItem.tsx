@@ -20,11 +20,11 @@ export const CollectionsBannerItem = ({
         <NextImage
           src={src}
           alt={alt}
-          height={400}
-          className="hover:opacity-30 transform transition duration-700 ease-in-out cursor-pointer hover:scale-105"
+          height={300}
+          className="hover:opacity-60 transform rounded-lg transition duration-400 ease-in-out cursor-pointer hover:scale-105"
         />
       )}
-      <h2 className="font-bold p-2 text-xl">{name}</h2>
+      <h2 className="font-bold p-2 text-md">{name}</h2>
     </NextLink>
   );
 };

@@ -38,7 +38,12 @@ export default async function SingleProductPage({
   if (!product) {
     notFound();
   }
-  const lastFiveReviews = reviews.product?.reviews.slice(-5) || [];
+  const firstFiveReviews = reviews.product?.reviews.slice(0, 5) || [];
+  const reviewsCount = reviews.product?.reviews.length || 0;
+  const allRatingPoints =
+    reviews.product?.reviews.reduce((acc, review) => acc + review.rating, 0) ||
+    0;
+  const averageRating = allRatingPoints / reviewsCount;
 
   return (
     <>
@@ -52,7 +57,12 @@ export default async function SingleProductPage({
         )}
         <SingleProductDescription product={product} className={"basis-1/2"} />
       </article>
-      <ReviewsSection productId={productId} lastFiveReviews={lastFiveReviews} />
+      <ReviewsSection
+        productId={productId}
+        firstFiveReviews={firstFiveReviews}
+        averageRating={averageRating}
+        reviewsCount={reviewsCount}
+      />
 
       <aside className="pt-4">
         <Suspense fallback={"Ładowanie..."}>

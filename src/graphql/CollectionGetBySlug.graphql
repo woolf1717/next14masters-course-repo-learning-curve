@@ -6,6 +6,7 @@ query CollectionGetBySlug($slug: String!) {
       id
       name
       description
+      rating
       categories {
         name
       }

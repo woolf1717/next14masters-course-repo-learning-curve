@@ -8,7 +8,9 @@ export default async function HomePage() {
   return (
     <>
       <CollectionsBanner collections={collections} />
-      <div className="pt-4">
+
+      <div className="pt-14">
+        <h2 className="p-2">Suggested products</h2>
         <SuggestedProductsList />
       </div>
     </>

@@ -319,7 +319,7 @@ export type CollectionGetBySlugQueryVariables = Exact<{
 }>;
 
 
-export type CollectionGetBySlugQuery = { collection?: { description: string, name: string, products: Array<{ id: string, name: string, description: string, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } | null };
+export type CollectionGetBySlugQuery = { collection?: { description: string, name: string, products: Array<{ id: string, name: string, description: string, rating?: number | null, price: number, categories: Array<{ name: string }>, images: Array<{ url: string }> }> } | null };
 
 export type CollectionsBannerFragment = { description: string, id: string, name: string, slug: string };
 
@@ -535,6 +535,7 @@ export const CollectionGetBySlugDocument = new TypedDocumentString(`
       id
       name
       description
+      rating
       categories {
         name
       }

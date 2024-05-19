@@ -44,51 +44,96 @@ export const AddReviewsForm = ({
     await sendReview(rowFormData);
   };
   return (
-    <div className="max-w-screen-sm">
+    <div className="max-w-screen-sm min-w-96">
+      <h2 className="text-xl pt-2 p-2">Share your thoughts</h2>
+      <p className="text-sm pt-1 p-2">
+        If you have used this product, share your thoughts with other customers
+      </p>
       <form
         action={handleFormAction}
         data-testid="add-review-form"
         ref={formRef}
       >
-        <div className="p-2 flex row items-center justify-around">
-          <label htmlFor="headline">Tytuł opinii</label>
+        <div className="p-2 flex flex-col items-start justify-around">
+          <label htmlFor="headline" className="text-xs">
+            Review title
+          </label>
           <input
             type="text"
             id="headline"
             name="headline"
             minLength={2}
+            className="border border-zinc-300 rounded-md p-2 w-full"
             required
           />
         </div>
-        <div className="p-2 flex row items-center justify-around">
-          <label htmlFor="content">Opinia</label>
-          <textarea id="content" name="content" minLength={2} required />
+        <div className="p-2 flex flex-col items-start justify-around">
+          <label htmlFor="content" className="text-xs">
+            Review content
+          </label>
+          <textarea
+            className="border border-zinc-300 rounded-md p-2  w-full"
+            id="content"
+            name="content"
+            minLength={2}
+            required
+          />
         </div>
-        <div className="p-2 flex row items-center justify-around">
-          <label htmlFor="rating">Ocena</label>
+        <div className="p-2 flex flex-col items-start  justify-around">
+          <label htmlFor="rating" className="text-xs">
+            Rating
+          </label>
           <input
             type="number"
             id="rating"
             name="rating"
             min={1}
             max={5}
+            className="border border-zinc-300 rounded-md p-2 w-full"
             required
           />
         </div>
-        <div className="p-2 flex row items-center justify-around">
-          <label htmlFor="name">Imię</label>
-          <input type="text" id="name" name="name" minLength={2} required />
+        <div className="p-2 flex flex-col items-start  justify-around">
+          <label htmlFor="name" className="text-xs">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            className="border border-zinc-300 rounded-md p-2 w-full"
+            minLength={2}
+            required
+          />
         </div>
-        <div className="p-2 flex row items-center justify-around">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" minLength={2} required />
+        <div className="p-2 flex flex-col items-start  justify-around">
+          <label htmlFor="email" className="text-xs">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            className="border border-zinc-300 rounded-md p-2 w-full"
+            minLength={2}
+            required
+          />
         </div>
         <div className="invisible">
-          <input type="text" value={productId} name="productId" readOnly />
+          <input
+            type="text"
+            className="border border-zinc-300 rounded-md p-2"
+            value={productId}
+            name="productId"
+            readOnly
+          />
         </div>
-        <div className="p-2 flex row items-center justify-end ">
-          <button type="submit" className="bg-slate-600 px-4 py-2 rounded-xl">
-            Wyślij opinię
+        <div className="p-2 flex flex-col items-start  justify-end ">
+          <button
+            type="submit"
+            className="bg-gray-900 px-4 py-2 rounded-md text-white"
+          >
+            Submit review
           </button>
         </div>
       </form>

@@ -7,12 +7,12 @@ export const CollectionsBanner = ({
   collections: CollectionsBannerFragment[];
 }) => {
   return (
-    <div className="flex gap-6">
+    <ul className="flex gap-6 flex-col lg:flex-row items-center mt-12">
       {collections.map((collection) => (
-        <div key={collection.id}>
+        <li key={collection.id}>
           <CollectionsBannerItem collection={collection} />
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
