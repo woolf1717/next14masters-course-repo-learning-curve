@@ -1,7 +1,6 @@
 import "./globals.css";
 
 import { ClerkProvider } from "@clerk/nextjs";
-import Link from "next/link";
 import { Merriweather_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import { Suspense } from "react";
