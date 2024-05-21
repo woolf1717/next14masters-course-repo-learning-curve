@@ -18,8 +18,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  modal,
 }: Readonly<{
   children: React.ReactNode;
+  modal: React.ReactNode;
 }>) {
   return (
     <ClerkProvider>
@@ -29,6 +31,7 @@ export default function RootLayout({
             <NavBar />
             <div className="mx-auto max-w-md pt-6 p-12 sm:max-w-2xl md:max-w-4xl lg:max-w-7xl">
               {children}
+              {modal}
             </div>
             <footer>
               <p className="text-center text-sm text-gray-500">

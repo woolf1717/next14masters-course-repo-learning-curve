@@ -17,7 +17,6 @@ export default authMiddleware({
     "/products",
     "/products/(.*)",
   ],
-  debug: true,
   // Allow signed out users to access the specified routes:
   // publicRoutes: ['/anyone-can-visit-this-route'],
   // Prevent the specified routes from accessing
