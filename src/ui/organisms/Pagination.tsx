@@ -33,9 +33,11 @@ export const Pagination = async ({
 
     for (let i = 1; i <= pagesCount; i++) {
       links.push(
-        <ActiveLink href={`${currentPath}/${i}`} key={i}>
-          {i}
-        </ActiveLink>
+        <div>
+          <ActiveLink href={`${currentPath}/${i}`} key={i}>
+            {i}
+          </ActiveLink>
+        </div>
       );
     }
 

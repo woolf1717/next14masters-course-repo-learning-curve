@@ -9,6 +9,10 @@ query CartGetById($id: ID!) {
         images {
           url
         }
+        categories {
+          id
+          name
+        }
         price
       }
     }

@@ -293,7 +293,7 @@ export type CartGetByIdQueryVariables = Exact<{
 }>;
 
 
-export type CartGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, images: Array<{ url: string }> } }> } | null };
+export type CartGetByIdQuery = { cart?: { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, images: Array<{ url: string }>, categories: Array<{ id: string, name: string }> } }> } | null };
 
 export type CartFragment = { id: string, items: Array<{ quantity: number, product: { id: string, name: string, price: number, images: Array<{ url: string }> } }> };
 
@@ -505,6 +505,10 @@ export const CartGetByIdDocument = new TypedDocumentString(`
         name
         images {
           url
+        }
+        categories {
+          id
+          name
         }
         price
       }

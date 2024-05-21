@@ -16,7 +16,7 @@ export const RemoveButton = ({
 
   return (
     <button
-      className="text-red-500 disabled:text-gray-400"
+      className="text-blue-500 disabled:text-gray-400"
       disabled={isPending}
       onClick={() => {
         startTransition(async () => {

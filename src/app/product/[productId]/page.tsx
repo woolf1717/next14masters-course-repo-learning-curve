@@ -1,7 +1,7 @@
 import { type Metadata } from "next/types";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
+import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage.1";
 import { SuggestedProductsList } from "@/ui/organisms/SuggestedProducts";
 import { getProductById } from "@/api/products";
 import { SingleProductDescription } from "@/ui/atoms/SingleProductDescription";

@@ -27,7 +27,9 @@ export const SingleProductDescription = ({
           <span className="sr-only">Kategoria:</span>
         </p>
         <div className="flex flex-row">
-          <InStock />
+          <div className="text-blue-400">
+            <InStock />
+          </div>
           <p className="pl-2"> In stock </p>
         </div>
         <form

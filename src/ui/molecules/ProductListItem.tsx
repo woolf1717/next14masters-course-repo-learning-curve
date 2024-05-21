@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ProductCoverImage } from "@/ui/atoms/ProductCoverImage";
+import { ProductCoverImage } from "../atoms/ProductCoverImage.1";
 import { ProductListItemDescription } from "@/ui/atoms/ProductListItemDescription";
 import { type ProductListItemFragment } from "@/gql/graphql";
 

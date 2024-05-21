@@ -1,9 +1,7 @@
 "use client";
 
 import { useOptimistic } from "react";
-
 import { changeItemQuantity } from "@/serverActions";
-
 
 export const ChangeProductQuantity = ({
   cartId,
@@ -28,7 +26,7 @@ export const ChangeProductQuantity = ({
   return (
     <form>
       <button
-        className="border bg-slate-50 w-8 h-8 ml-2"
+        className="border bg-slate-50 w-8 h-8"
         data-testid="decrement"
         formAction={async () => {
           if (optimisticQuantity <= 1) {
@@ -40,9 +38,11 @@ export const ChangeProductQuantity = ({
       >
         -
       </button>
-      <span data-testid="quantity">{optimisticQuantity}</span>
+      <span data-testid="quantity" className="px-3">
+        {optimisticQuantity}
+      </span>
       <button
-        className="border bg-slate-50 w-8 h-8 ml-2"
+        className="border bg-slate-50 w-8 h-8"
         data-testid="increment"
         formAction={async () => {
           setOptimisticQuantity("ADD");
