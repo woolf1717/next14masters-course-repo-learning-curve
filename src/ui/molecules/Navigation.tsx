@@ -1,6 +1,6 @@
 import { ActiveLink } from "@/ui/atoms/ActiveLink";
 
-export const Navigation = () => {
+export const Navigation = async () => {
   return (
     <nav>
       <ul className="flex max-w-full space-x-8 whitespace-nowrap lg:px-8 h-16 sm:overflow-auto overflow-x-scroll">

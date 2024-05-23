@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { removeItem } from "@/serverActions";
 
@@ -12,7 +11,6 @@ export const RemoveButton = ({
   productId: string;
 }) => {
   const [isPending, startTransition] = useTransition();
-  const router = useRouter();
 
   return (
     <button
@@ -21,7 +19,7 @@ export const RemoveButton = ({
       onClick={() => {
         startTransition(async () => {
           await removeItem(cartId, productId);
-          router.refresh();
+          window.location.reload();
         });
       }}
     >

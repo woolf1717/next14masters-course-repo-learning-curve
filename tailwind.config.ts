@@ -12,6 +12,16 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        slideIn: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        opacityAnimation: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "0.3" },
+        },
+      },
     },
   },
   plugins: [require("@tailwindcss/typography")],
