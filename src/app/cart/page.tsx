@@ -1,6 +1,5 @@
 import Link from "next/link";
 import NextImage from "next/image";
-import { redirect } from "next/navigation";
 import { getCartFromCookies, handlePaymentAction } from "@/api/cart";
 
 import { ChangeProductQuantity } from "@/ui/atoms/IncrementProductQuantity";
@@ -9,10 +8,6 @@ import { formatMoney } from "@/utils";
 
 export default async function CartPage() {
   const cart = await getCartFromCookies();
-
-  if (!cart) {
-    redirect("/");
-  }
 
   return (
     <>
