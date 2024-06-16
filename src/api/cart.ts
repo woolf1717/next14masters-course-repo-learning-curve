@@ -1,15 +1,16 @@
-import { redirect } from "next/navigation";
 import Stripe from "stripe";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { executeGraphql } from "@/api/graphqlQuery";
-
 import {
   CartAddProductDocument,
   CartCreateDocument,
   CartGetByIdDocument,
   CartSetProductQuantityDocument,
   ProductGetByIdDocument,
-} from "@/gql/graphql";``
+} from "@/gql/graphql";
+
+``;
 
 export async function getOrCreateCart() {
   const existingCart = await getCartFromCookies();
@@ -128,14 +129,13 @@ export async function handlePaymentAction() {
     })),
     mode: "payment",
     success_url:
-      "http://localhost:3000/cart/success?sessionId={CHECKOUT_SESSION_ID}",
-    cancel_url: "http://localhost:3000/cart/cancel",
+      "https://nextjsmasters.bartekdomena.pl/cart/success?sessionId={CHECKOUT_SESSION_ID}",
+    cancel_url: "https://nextjsmasters.bartekdomena.pl/",
   });
 
   if (!checkoutSession.url) {
     throw new Error("Something went wrong");
   }
 
-  cookies().set("cartId", "");
   redirect(checkoutSession.url);
 }

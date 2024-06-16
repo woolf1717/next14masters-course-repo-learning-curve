@@ -1,5 +1,6 @@
 import Stripe from "stripe";
 import { redirect } from "next/navigation";
+import { ClearCartForm } from "@/app/cart/success/clearCartForm";
 
 export default async function CartSuccessPage({
   searchParams,
@@ -22,5 +23,10 @@ export default async function CartSuccessPage({
     searchParams.sessionId
   );
 
-  return <h2>{session.payment_status}</h2>;
+  return (
+    <>
+      <ClearCartForm />
+      <h2>{session.payment_status}</h2>
+    </>
+  );
 }
