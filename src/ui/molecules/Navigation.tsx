@@ -5,7 +5,7 @@ export const Navigation = async () => {
     <nav>
       <ul className="flex max-w-full space-x-8 whitespace-nowrap lg:px-8 h-16 sm:overflow-auto overflow-x-scroll">
         <li>
-          <ActiveLink href="/">Home</ActiveLink>
+          <ActiveLink href="/">RiddleWear Clothing</ActiveLink>
         </li>
         <li>
           <ActiveLink exact={false} href="/products">

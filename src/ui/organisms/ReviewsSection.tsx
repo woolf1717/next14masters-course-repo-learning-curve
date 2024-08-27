@@ -26,7 +26,7 @@ export const ReviewsSection = ({
     <section className="flex flex-col">
       <h1 className="text-2xl font-bold p-2 pt-4">Customers Reviews</h1>
       <h2 className="text-md p-2 pt-0">
-        {averageRating.toFixed(1)} /5 acordingly to {reviewsCount} reviews
+        {averageRating.toFixed(1)}/5 acordingly to {reviewsCount} reviews
       </h2>
       <div className="pt-2 flex flex-col lg:flex-row-reverse justify-between px-4">
         <Reviews reviews={optimisticReviews} />

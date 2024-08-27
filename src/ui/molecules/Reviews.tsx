@@ -1,3 +1,5 @@
+import { StarRating } from "@/ui/atoms/StarRating";
+
 export type ReviewsType = {
   author: string;
   createdAt: unknown;
@@ -21,7 +23,7 @@ export const Reviews = ({ reviews }: { reviews: ReviewsType[] }) => {
             {!review.sending && (
               <div className="">
                 <p className="whitespace-nowrap">{review?.author}</p>
-                <p>Rating:{review?.rating}/5</p>
+                <StarRating initialRating={review?.rating} />
                 <h3 className="pt-2">{review?.title}</h3>
                 <p className="italic font-light">
                   Description:{review?.description}

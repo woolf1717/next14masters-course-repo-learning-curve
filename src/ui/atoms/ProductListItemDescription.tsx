@@ -1,5 +1,6 @@
 import { type ProductListItemFragment } from "@/gql/graphql";
-import { formatMoney, formatRating } from "@/utils";
+import { StarRating } from "@/ui/atoms/StarRating";
+import { formatMoney } from "@/utils";
 
 type ProductListItemDescriptionProps = {
   product: ProductListItemFragment;
@@ -24,10 +25,7 @@ export const ProductListItemDescription = ({
           <span className="sr-only">Price:</span>
           <span data-testid="product-price">{formatMoney(price / 100)}</span>
         </p>
-        <div>
-          <span>Rating: </span>
-          <span data-testid="product-rating">{formatRating(rating)}/5</span>
-        </div>
+        <StarRating initialRating={rating} />
       </div>
     </div>
   );

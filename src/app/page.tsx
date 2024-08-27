@@ -1,4 +1,5 @@
 import { CollectionsBanner } from "@/ui/organisms/CollectionsBanner";
+import { ImageSlider } from "@/ui/atoms/ImageSlider";
 import { SuggestedProductsList } from "@/ui/organisms/SuggestedProducts";
 import { getCollectionsList } from "@/api/collections";
 
@@ -7,6 +8,7 @@ export default async function HomePage() {
 
   return (
     <>
+      <ImageSlider />
       <CollectionsBanner collections={collections} />
 
       <div className="pt-14">
